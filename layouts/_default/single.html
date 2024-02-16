@@ -14,7 +14,6 @@
       </span>
       {{- end }}
     </h1>
-
     {{- if .Description }}
     <div class="post-description">
       {{ .Description }}
@@ -40,8 +39,6 @@
     {{- if not (.Param "disableAnchoredHeadings") }}
     {{- partial "anchored_headings.html" .Content -}}
     {{- else }}{{ .Content }}{{ end }}
-    <iframe src="https://bhread.com/post/https://blog.bhread.com/posts/my-first-post/">
-    </iframe>
   </div>
   {{- end }}
 
