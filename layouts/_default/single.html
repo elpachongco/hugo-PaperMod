@@ -56,6 +56,26 @@
     {{- partial "share_icons.html" . -}}
     {{- end }}
   </footer>
+  <script>
+    // Wait for bhread to send a message to resize
+    window.addEventListener('message', function(e) {
+      /* This code adjusts the comment section to its full height. 
+      ** You may omit this if you're okay with a scrollable comment section.
+      **/
+      const commentsSection = document.getElementById('bhread-comments');
+      // Only show comment section if it loads successfully.
+      commentsSection.style.display = 'block';
+      const eventName = e.data[0];
+      const data = e.data[1];
+      switch(eventName) {
+        case 'setHeight':
+          commentsSection.setAttribute('height', data);
+          break;
+      }
+    }, false);
+
+  </script>
+  <iframe id="bhread-comments" src="https://bhread.com/comment-embed/{{ absURL .Page.RelPermalink }}" width="100%" height="350px"  frameBorder="0" onload="this.style.display = 'none'" loading="lazy" style="border-radius: 5px;"> </iframe>
 
   {{- if (.Param "comments") }}
   {{- partial "comments.html" . }}
